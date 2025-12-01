@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-dark: #121212;
-    --bg-light-dark: #1c1c1c;
-    --text-primary: #e0e0e0;
-    --text-secondary: #aaaaaa;
-    --accent-color: #0d6efd; /* Cor primária do Bootstrap */
+    /* Paleta de Cores (Nova) */
+    --bg-light: #FBF1DC; /* Cor Principal (Clara/Creme) */
+    --bg-mid: #DDD7C5; /* Fundo Secundário (Tons de cinza-claro/bege) */
+    --text-dark: #373B41; /* Texto Principal (Cinza Escuro) */
+    --text-secondary: #33595E; /* Texto/Elementos Secundários (Azul-petróleo/Cerceta) */
+    --accent-color: #33595E; /* Cor de Destaque (Igual ao secundário para ênfase) */
+    --border-color: #FDF1DD; /* Cor da Borda/Divisor (Quase branco) */
 }
 
 html {
@@ -15,31 +17,38 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
+    background-color: var(--bg-light); /* Novo: Fundo principal claro */
+    color: var(--text-dark); /* Novo: Cor do texto escuro */
     line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
+    color: var(--text-dark);
 }
 
 /* --- Seções Alternadas --- */
 .section-darker {
-    background-color: var(--bg-light-dark);
+    background-color: var(--bg-mid); /* Novo: Fundo secundário um pouco mais escuro */
 }
 
 section {
     padding: 6rem 0;
 }
 
-/* --- Navbar "Glassmorphism" --- */
+/* --- Navbar "Efeito Suave" --- */
+/* Apenas um fundo sutil, já que o tema é claro */
 .navbar-glass {
-    background: rgba(20, 20, 20, 0.7); /* Fundo escuro semi-transparente */
-    backdrop-filter: blur(10px); /* O efeito de desfoque */
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(251, 241, 220, 0.9); /* Fundo claro semi-transparente (ajustado de --bg-light) */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color); /* Borda muito suave */
     transition: background 0.3s ease;
+}
+
+/* Ajustando links para o tema claro */
+.navbar-brand, .nav-link {
+    color: var(--text-dark) !important; /* Cor dos links escura */
 }
 
 .nav-link {
@@ -47,16 +56,18 @@ section {
 }
 
 .nav-link:hover {
-    color: var(--accent-color) !important;
+    color: var(--accent-color) !important; /* Cor de destaque escura */
 }
 
 /* --- Seção Hero --- */
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    /* Manter a imagem de fundo, mas com um overlay mais claro */
+    background: linear-gradient(rgba(251, 241, 220, 0.8), rgba(251, 241, 220, 1)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    color: var(--text-dark); /* Certifica que o texto principal seja escuro */
 }
 
 .foto-perfil {
@@ -65,12 +76,12 @@ section {
     object-fit: cover;
     border-radius: 50%;
     border: 4px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(13, 110, 253, 0.5);
+    box-shadow: 0 0 20px rgba(51, 89, 94, 0.5); /* Sombra com a cor de destaque */
 }
 
 /* --- Efeito Máquina de Escrever (Typewriter) --- */
 .typewriter-text {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Cor de destaque */
     font-weight: 600;
     border-right: 2px solid var(--accent-color);
     animation: blinkCursor 0.7s infinite;
@@ -81,26 +92,28 @@ section {
     to { border-right-color: transparent; }
 }
 
-/* --- Cards de Projeto (Glassmorphism) --- */
+/* --- Cards de Projeto (Estilo Suave/Neumorphism-like) --- */
 .project-card {
-    background: rgba(40, 40, 40, 0.5);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-light); /* Fundo igual ao principal para efeito "flutuante" */
+    backdrop-filter: blur(0); /* Remove o blur para o tema claro */
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 2rem;
-    height: 100%; /* Garante que os cards tenham a mesma altura */
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    /* Sombra suave para destacar no fundo --bg-light */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05), -5px -5px 15px rgba(255, 255, 255, 0.5);
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .project-card .card-tags {
-    margin-top: auto; /* Empurra os botões para o final */
+    margin-top: auto;
     padding-top: 1rem;
 }
 
@@ -113,24 +126,40 @@ section {
 }
 
 .skill-tag {
-    background-color: var(--bg-light-dark);
-    color: var(--text-primary);
+    background-color: var(--bg-mid); /* Fundo da tag com a cor secundária */
+    color: var(--text-dark);
     padding: 0.75rem 1.5rem;
     border-radius: 30px;
     font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
 
 .skill-tag:hover {
     background-color: var(--accent-color);
-    color: #fff;
+    color: var(--bg-light); /* Texto da tag claro no hover */
     transform: scale(1.05);
+}
+
+/* --- Botões Bootstrap (Ajuste de cores) --- */
+.btn-primary {
+    --bs-btn-bg: var(--accent-color);
+    --bs-btn-border-color: var(--accent-color);
+    --bs-btn-hover-bg: #2b4b4f; /* Um tom ligeiramente mais escuro para o hover */
+    --bs-btn-hover-border-color: #2b4b4f;
+    --bs-btn-color: var(--bg-light); /* Texto claro no botão principal */
+}
+
+.btn-outline-light {
+    --bs-btn-color: var(--accent-color); /* Cor do texto no botão outline */
+    --bs-btn-border-color: var(--accent-color);
+    --bs-btn-hover-bg: var(--accent-color);
+    --bs-btn-hover-color: var(--bg-light); /* Cor do texto no hover do outline */
 }
 
 /* --- Rodapé --- */
 footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .btn-social {
